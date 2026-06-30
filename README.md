@@ -13,6 +13,10 @@
 </p>
 
 <p align="center">
+  <b>English</b> · <a href="README.zh-CN.md">中文</a>
+</p>
+
+<p align="center">
   <b>One library for the entire frontier LLM training stack.</b><br>
   Pre-training · CPT/DAPT · SFT · DPO/IPO/KTO/ORPO/SimPO/CPO · RLHF · RLVR+GRPO · Agentic RL · Distillation · Self-play · LoRA/QLoRA<br>
   <i>— all behind one config-driven, registry-based API.</i>
