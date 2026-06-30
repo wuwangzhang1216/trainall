@@ -1,5 +1,10 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="10-lora-qlora.md">← LoRA / QLoRA</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/11-architectures.md">🌐 English</a></td><td align="right" width="30%"><sub>&nbsp;</sub></td></tr></table>
+<p align="center">
+  <a href="10-lora-qlora.md">← LoRA/QLoRA</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/11-architectures.md">English</a>
+</p>
 <!-- /nav -->
 
 # 模型架构 (Model Architectures)

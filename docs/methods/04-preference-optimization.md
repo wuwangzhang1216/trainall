@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="03-sft.md">← SFT 指令微调</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/04-preference-optimization.md">🌐 English</a></td><td align="right" width="30%"><a href="05-rlhf.md">RLHF →</a></td></tr></table>
+<p align="center">
+  <a href="03-sft.md">← SFT</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/04-preference-optimization.md">English</a> ·
+  <a href="05-rlhf.md">RLHF →</a>
+</p>
 <!-- /nav -->
 
 # 离线偏好优化 (Offline Preference Optimization)

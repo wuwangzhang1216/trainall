@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="07-agentic-rl.md">← Agentic RL</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/08-distillation-and-selfplay.md">🌐 English</a></td><td align="right" width="30%"><a href="09-process-supervision.md">过程监督 PRM →</a></td></tr></table>
+<p align="center">
+  <a href="07-agentic-rl.md">← Agentic RL</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/08-distillation-and-selfplay.md">English</a> ·
+  <a href="09-process-supervision.md">过程监督 →</a>
+</p>
 <!-- /nav -->
 
 # 蒸馏与数据飞轮 (Distillation & the Synthetic-Data Flywheel)

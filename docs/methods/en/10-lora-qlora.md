@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="09-process-supervision.md">← Process supervision</a></td><td align="center" width="40%"><a href="README.md">📑 Index</a> · <a href="../../GLOSSARY.md">📖 Glossary</a> · <a href="../10-lora-qlora.md">🌐 中文</a></td><td align="right" width="30%"><a href="11-architectures.md">Architectures →</a></td></tr></table>
+<p align="center">
+  <a href="09-process-supervision.md">← Process supervision</a> ·
+  <a href="README.md">Index</a> ·
+  <a href="../../GLOSSARY.md">Glossary</a> ·
+  <a href="../10-lora-qlora.md">中文</a> ·
+  <a href="11-architectures.md">Architectures →</a>
+</p>
 <!-- /nav -->
 
 # LoRA / QLoRA / Full Finetune

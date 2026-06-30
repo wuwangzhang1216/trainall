@@ -1,5 +1,10 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><sub>&nbsp;</sub></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/01-pretraining.md">🌐 English</a></td><td align="right" width="30%"><a href="02-continued-pretraining.md">持续预训练 CPT →</a></td></tr></table>
+<p align="center">
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/01-pretraining.md">English</a> ·
+  <a href="02-continued-pretraining.md">持续预训练 →</a>
+</p>
 <!-- /nav -->
 
 # 预训练 (Pre-training)

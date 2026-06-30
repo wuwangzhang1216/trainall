@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="01-pretraining.md">← 预训练</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/02-continued-pretraining.md">🌐 English</a></td><td align="right" width="30%"><a href="03-sft.md">SFT 指令微调 →</a></td></tr></table>
+<p align="center">
+  <a href="01-pretraining.md">← 预训练</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/02-continued-pretraining.md">English</a> ·
+  <a href="03-sft.md">SFT →</a>
+</p>
 <!-- /nav -->
 
 # 继续预训练 / 领域自适应预训练 (Continued Pre-training / Domain-Adaptive Pre-training, CPT / DAPT)

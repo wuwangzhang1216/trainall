@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="08-distillation-and-selfplay.md">← Distillation & self-play</a></td><td align="center" width="40%"><a href="README.md">📑 Index</a> · <a href="../../GLOSSARY.md">📖 Glossary</a> · <a href="../09-process-supervision.md">🌐 中文</a></td><td align="right" width="30%"><a href="10-lora-qlora.md">LoRA / QLoRA →</a></td></tr></table>
+<p align="center">
+  <a href="08-distillation-and-selfplay.md">← Distillation & self-play</a> ·
+  <a href="README.md">Index</a> ·
+  <a href="../../GLOSSARY.md">Glossary</a> ·
+  <a href="../09-process-supervision.md">中文</a> ·
+  <a href="10-lora-qlora.md">LoRA/QLoRA →</a>
+</p>
 <!-- /nav -->
 
 # Process Supervision / Process Reward Model (PRM)

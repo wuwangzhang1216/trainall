@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="09-process-supervision.md">← 过程监督 PRM</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/10-lora-qlora.md">🌐 English</a></td><td align="right" width="30%"><a href="11-architectures.md">模型架构 →</a></td></tr></table>
+<p align="center">
+  <a href="09-process-supervision.md">← 过程监督</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/10-lora-qlora.md">English</a> ·
+  <a href="11-architectures.md">模型架构 →</a>
+</p>
 <!-- /nav -->
 
 # LoRA / QLoRA / 全参微调 (LoRA / QLoRA / Full Finetune)

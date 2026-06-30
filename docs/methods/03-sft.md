@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="02-continued-pretraining.md">← 持续预训练 CPT</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/03-sft.md">🌐 English</a></td><td align="right" width="30%"><a href="04-preference-optimization.md">偏好优化 →</a></td></tr></table>
+<p align="center">
+  <a href="02-continued-pretraining.md">← 持续预训练</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/03-sft.md">English</a> ·
+  <a href="04-preference-optimization.md">偏好优化 →</a>
+</p>
 <!-- /nav -->
 
 # 监督微调 (Supervised Fine-Tuning, SFT)

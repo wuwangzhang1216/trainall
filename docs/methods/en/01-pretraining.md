@@ -1,5 +1,10 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><sub>&nbsp;</sub></td><td align="center" width="40%"><a href="README.md">📑 Index</a> · <a href="../../GLOSSARY.md">📖 Glossary</a> · <a href="../01-pretraining.md">🌐 中文</a></td><td align="right" width="30%"><a href="02-continued-pretraining.md">Continued pre-training →</a></td></tr></table>
+<p align="center">
+  <a href="README.md">Index</a> ·
+  <a href="../../GLOSSARY.md">Glossary</a> ·
+  <a href="../01-pretraining.md">中文</a> ·
+  <a href="02-continued-pretraining.md">Continued pre-training →</a>
+</p>
 <!-- /nav -->
 
 # Pre-training

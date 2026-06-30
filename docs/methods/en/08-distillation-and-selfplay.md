@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="07-agentic-rl.md">← Agentic RL</a></td><td align="center" width="40%"><a href="README.md">📑 Index</a> · <a href="../../GLOSSARY.md">📖 Glossary</a> · <a href="../08-distillation-and-selfplay.md">🌐 中文</a></td><td align="right" width="30%"><a href="09-process-supervision.md">Process supervision →</a></td></tr></table>
+<p align="center">
+  <a href="07-agentic-rl.md">← Agentic RL</a> ·
+  <a href="README.md">Index</a> ·
+  <a href="../../GLOSSARY.md">Glossary</a> ·
+  <a href="../08-distillation-and-selfplay.md">中文</a> ·
+  <a href="09-process-supervision.md">Process supervision →</a>
+</p>
 <!-- /nav -->
 
 # Distillation & the Synthetic-Data Flywheel

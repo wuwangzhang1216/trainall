@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="04-preference-optimization.md">← Preference optimization</a></td><td align="center" width="40%"><a href="README.md">📑 Index</a> · <a href="../../GLOSSARY.md">📖 Glossary</a> · <a href="../05-rlhf.md">🌐 中文</a></td><td align="right" width="30%"><a href="06-rlvr-grpo.md">RLVR + GRPO →</a></td></tr></table>
+<p align="center">
+  <a href="04-preference-optimization.md">← Preference optimization</a> ·
+  <a href="README.md">Index</a> ·
+  <a href="../../GLOSSARY.md">Glossary</a> ·
+  <a href="../05-rlhf.md">中文</a> ·
+  <a href="06-rlvr-grpo.md">RLVR+GRPO →</a>
+</p>
 <!-- /nav -->
 
 # RLHF / RLAIF (Reinforcement Learning from Human/AI Feedback)

@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="04-preference-optimization.md">← 偏好优化</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/05-rlhf.md">🌐 English</a></td><td align="right" width="30%"><a href="06-rlvr-grpo.md">RLVR + GRPO →</a></td></tr></table>
+<p align="center">
+  <a href="04-preference-optimization.md">← 偏好优化</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/05-rlhf.md">English</a> ·
+  <a href="06-rlvr-grpo.md">RLVR+GRPO →</a>
+</p>
 <!-- /nav -->
 
 # RLHF / RLAIF（基于人类/AI 反馈的强化学习）

@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="06-rlvr-grpo.md">← RLVR + GRPO</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/07-agentic-rl.md">🌐 English</a></td><td align="right" width="30%"><a href="08-distillation-and-selfplay.md">蒸馏与自博弈 →</a></td></tr></table>
+<p align="center">
+  <a href="06-rlvr-grpo.md">← RLVR+GRPO</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/07-agentic-rl.md">English</a> ·
+  <a href="08-distillation-and-selfplay.md">蒸馏与自博弈 →</a>
+</p>
 <!-- /nav -->
 
 # 智能体强化学习 (Agentic RL)

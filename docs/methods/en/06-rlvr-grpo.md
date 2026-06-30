@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="05-rlhf.md">← RLHF</a></td><td align="center" width="40%"><a href="README.md">📑 Index</a> · <a href="../../GLOSSARY.md">📖 Glossary</a> · <a href="../06-rlvr-grpo.md">🌐 中文</a></td><td align="right" width="30%"><a href="07-agentic-rl.md">Agentic RL →</a></td></tr></table>
+<p align="center">
+  <a href="05-rlhf.md">← RLHF</a> ·
+  <a href="README.md">Index</a> ·
+  <a href="../../GLOSSARY.md">Glossary</a> ·
+  <a href="../06-rlvr-grpo.md">中文</a> ·
+  <a href="07-agentic-rl.md">Agentic RL →</a>
+</p>
 <!-- /nav -->
 
 # RLVR + GRPO (Reinforcement Learning from Verifiable Rewards + Group Relative Policy Optimization)

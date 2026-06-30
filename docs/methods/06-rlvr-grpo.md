@@ -1,5 +1,11 @@
 <!-- nav -->
-<table width="100%"><tr><td align="left" width="30%"><a href="05-rlhf.md">← RLHF</a></td><td align="center" width="40%"><a href="README.md">📑 索引</a> · <a href="../GLOSSARY.md">📖 术语词典</a> · <a href="en/06-rlvr-grpo.md">🌐 English</a></td><td align="right" width="30%"><a href="07-agentic-rl.md">Agentic RL →</a></td></tr></table>
+<p align="center">
+  <a href="05-rlhf.md">← RLHF</a> ·
+  <a href="README.md">索引</a> ·
+  <a href="../GLOSSARY.md">术语表</a> ·
+  <a href="en/06-rlvr-grpo.md">English</a> ·
+  <a href="07-agentic-rl.md">Agentic RL →</a>
+</p>
 <!-- /nav -->
 
 # RLVR + GRPO (Reinforcement Learning from Verifiable Rewards + Group Relative Policy Optimization)
