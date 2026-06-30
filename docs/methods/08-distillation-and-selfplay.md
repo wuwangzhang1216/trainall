@@ -30,7 +30,7 @@
 
 考虑一个分类（或下一个 token 预测）问题。硬标签的交叉熵 (cross-entropy, CE) 只约束**正确类别**的概率往 1 推，对其余所有错误类别一视同仁地往 0 压。但 teacher 知道更细的结构：在"猫 vs 狗 vs 汽车"里，把猫错认成狗远比错认成汽车合理。Teacher 输出的概率分布 $p_{\text{teacher}}=(0.9, 0.09, 0.01)$ 把这种**类间相似度结构**编码了进去，Hinton 等人 (2015) 称之为暗知识。
 
-为了让这些"非最大概率"的信息显现出来，蒸馏引入**温度 (temperature)** $T$：把 logits 除以 $T$ 再 softmax。$T>1$ 会"软化"分布，放大那些原本接近 0 的小概率之间的相对差异，让 student 能学到它们。Student 用**同样的** $T$ 去匹配 teacher 的软分布。训练完成后推理时 $T=1$。
+为了让这些"非最大概率"的信息显现出来，蒸馏引入**温度 (temperature)** $T$：把 logits 除以 $T$ 再 softmax。$T\gt 1$ 会"软化"分布，放大那些原本接近 0 的小概率之间的相对差异，让 student 能学到它们。Student 用**同样的** $T$ 去匹配 teacher 的软分布。训练完成后推理时 $T=1$。
 
 关键细节：因为软标签的梯度量级随 $1/T^2$ 缩小，蒸馏损失要乘回 $T^2$，使其梯度量级与硬-CE 项可比、便于二者加权混合。这正是 trainall `DistillObjective` 里 `kd = (T*T) * masked_mean(kl_tok, mask)` 的来历。
 
@@ -92,7 +92,7 @@ $$
 \mathcal{L} = \alpha\, \mathcal{L}_{\text{KD}} + (1-\alpha)\, \underbrace{\big(-\log q^s_{y}\big)}_{\mathcal{L}_{\text{CE}}}.
 $$
 
-符号说明：$T$ 温度（$T>1$ 软化分布）；$\alpha\in[0,1]$ KD 与 CE 的权重（$\alpha=1$ 纯蒸馏，$\alpha=0$ 纯监督）；$\mathrm{KL}$ 在每个 token 上算、再按 `response_mask`（默认 attention mask）做 masked 平均，只蒸馏回答区域；$T^2$ 抵消温度对梯度量级的 $1/T^2$ 缩放。
+符号说明：$T$ 温度（$T\gt 1$ 软化分布）；$\alpha\in[0,1]$ KD 与 CE 的权重（$\alpha=1$ 纯蒸馏，$\alpha=0$ 纯监督）；$\mathrm{KL}$ 在每个 token 上算、再按 `response_mask`（默认 attention mask）做 masked 平均，只蒸馏回答区域；$T^2$ 抵消温度对梯度量级的 $1/T^2$ 缩放。
 
 **飞轮的"目标"——一个数据过滤算子。** 飞轮本身不是可微损失，而是一个保留算子。给定题 $x$、参考答案 $r$、裁判 $V$（$V(y,r)\in\{0,1\}$ 通过与否），从 solver $\pi$ 采 $N$ 个答案，保留集为
 
@@ -105,8 +105,8 @@ $$
 $$
 d \leftarrow
 \begin{cases}
-\min(1,\; d + \text{step}), & \bar p > \text{target\_high} \\
-\max(0,\; d - \text{step}), & \bar p < \text{target\_low} \\
+\min(1,\; d + \text{step}), & \bar p \gt  \text{target\_high} \\
+\max(0,\; d - \text{step}), & \bar p \lt  \text{target\_low} \\
 d, & \text{otherwise}
 \end{cases}
 \qquad \bar p = \frac{\sum_{\text{round}} \mathbf{1}[\text{pass}]}{\#\text{candidates}}.

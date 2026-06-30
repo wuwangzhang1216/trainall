@@ -67,13 +67,13 @@ $$
 
 What each symbol means:
 
-- $z_{b,t}$: the scalar score the model outputs at the $t$-th token position of sample $b$ (the value-head output, or the logit of some "good-step" token). $z>0 \Rightarrow$ predicts "correct."
+- $z_{b,t}$: the scalar score the model outputs at the $t$-th token position of sample $b$ (the value-head output, or the logit of some "good-step" token). $z\gt 0 \Rightarrow$ predicts "correct."
 - $y_{b,t}$: the human/automatic step label for that step, $1$=correct step, $0$=wrong step.
 - $\sigma(z)=\dfrac{1}{1+e^{-z}}$: maps the logit to a probability in $(0,1)$.
 - $|S|$: the total number of step positions that participate in the loss (i.e. the count of `True` in `step_mask`); it is used for normalization so the loss is independent of chain length.
 - "with logits" means the implementation directly uses the numerically stable formula $\text{BCE}=\max(z,0)-z\,y+\log(1+e^{-|z|})$ on $z$, avoiding the overflow that would come from explicitly computing $\sigma$ and then taking its log.
 
-The evaluation metric `step_acc` is a thresholded accuracy: $\text{step\_acc}=\dfrac{1}{|S|}\sum_{(b,t)\in S}\mathbb{1}\big[(z_{b,t}>0)=y_{b,t}\big]$, i.e. classify right/wrong using $z=0$ (probability 0.5) as the boundary, then compare against the label.
+The evaluation metric `step_acc` is a thresholded accuracy: $\text{step\_acc}=\dfrac{1}{|S|}\sum_{(b,t)\in S}\mathbb{1}\big[(z_{b,t}\gt 0)=y_{b,t}\big]$, i.e. classify right/wrong using $z=0$ (probability 0.5) as the boundary, then compare against the label.
 
 By contrast, **outcome supervision (ORM)** does the same binary classification at only **one** position in the whole trajectory (the last step / the answer)—it can be seen as the degenerate special case $|S|=1$. All of PRM's gains come from expanding this set $S$ to every step inside the chain.
 

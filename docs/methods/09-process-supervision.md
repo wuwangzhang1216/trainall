@@ -67,13 +67,13 @@ $$
 
 各符号含义：
 
-- $z_{b,t}$：模型在样本 $b$ 第 $t$ 个 token 位置输出的标量分数（value head 输出，或某个"good-step" token 的 logit）。$z>0 \Rightarrow$ 预测"对"。
+- $z_{b,t}$：模型在样本 $b$ 第 $t$ 个 token 位置输出的标量分数（value head 输出，或某个"good-step" token 的 logit）。$z\gt 0 \Rightarrow$ 预测"对"。
 - $y_{b,t}$：该步的人工/自动步骤标签，$1$=正确步骤，$0$=错误步骤。
 - $\sigma(z)=\dfrac{1}{1+e^{-z}}$：把 logit 映射到概率 $(0,1)$。
 - $|S|$：参与损失的步骤位置总数（即 `step_mask` 中 `True` 的个数）；用它做归一化，使损失与链长无关。
 - "with logits"指实现上直接对 $z$ 用数值稳定的公式 $\text{BCE}=\max(z,0)-z\,y+\log(1+e^{-|z|})$，避免显式算 $\sigma$ 再取对数导致的溢出。
 
-评估指标 `step_acc` 是阈值化准确率：$\text{step\_acc}=\dfrac{1}{|S|}\sum_{(b,t)\in S}\mathbb{1}\big[(z_{b,t}>0)=y_{b,t}\big]$，即以 $z=0$（概率 0.5）为界判对/错后与标签比较。
+评估指标 `step_acc` 是阈值化准确率：$\text{step\_acc}=\dfrac{1}{|S|}\sum_{(b,t)\in S}\mathbb{1}\big[(z_{b,t}\gt 0)=y_{b,t}\big]$，即以 $z=0$（概率 0.5）为界判对/错后与标签比较。
 
 与之对照，**结果监督 (ORM)** 只在整条轨迹**一个**位置（末步/答案处）上做同样的二分类——可视为 $|S|=1$ 的退化特例。PRM 的全部增益都来自把这个集合 $S$ 扩展到链条内部的所有步骤。
 

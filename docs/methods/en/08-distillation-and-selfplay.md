@@ -30,7 +30,7 @@ One sentence to tell them apart: **distillation is "copy from someone smarter," 
 
 Consider a classification (or next-token-prediction) problem. The cross-entropy (CE) of hard labels only constrains the probability of the **correct class** toward 1, pressing every other wrong class indiscriminately toward 0. But the teacher knows finer structure: in "cat vs dog vs car," mistaking a cat for a dog is far more reasonable than mistaking it for a car. The teacher's output distribution $p_{\text{teacher}}=(0.9, 0.09, 0.01)$ encodes this **inter-class similarity structure**, which Hinton et al. (2015) called dark knowledge.
 
-To surface this "non-maximum-probability" information, distillation introduces **temperature** $T$: divide the logits by $T$ before softmax. $T>1$ "softens" the distribution, amplifying the relative differences among the small probabilities that were originally near 0, so the student can learn them. The student uses the **same** $T$ to match the teacher's soft distribution. After training, inference uses $T=1$.
+To surface this "non-maximum-probability" information, distillation introduces **temperature** $T$: divide the logits by $T$ before softmax. $T\gt 1$ "softens" the distribution, amplifying the relative differences among the small probabilities that were originally near 0, so the student can learn them. The student uses the **same** $T$ to match the teacher's soft distribution. After training, inference uses $T=1$.
 
 A key detail: because the gradient magnitude of soft labels shrinks by $1/T^2$, the distillation loss must be multiplied back by $T^2$, making its gradient magnitude comparable to the hard-CE term and easy to mix with weights. This is exactly where `kd = (T*T) * masked_mean(kl_tok, mask)` in trainall's `DistillObjective` comes from.
 
@@ -92,7 +92,7 @@ $$
 \mathcal{L} = \alpha\, \mathcal{L}_{\text{KD}} + (1-\alpha)\, \underbrace{\big(-\log q^s_{y}\big)}_{\mathcal{L}_{\text{CE}}}.
 $$
 
-Symbols: $T$ is temperature ($T>1$ softens the distribution); $\alpha\in[0,1]$ weights KD against CE ($\alpha=1$ pure distillation, $\alpha=0$ pure supervision); $\mathrm{KL}$ is computed per token and then masked-averaged by `response_mask` (default: the attention mask), distilling only over the answer region; $T^2$ cancels temperature's $1/T^2$ scaling of the gradient magnitude.
+Symbols: $T$ is temperature ($T\gt 1$ softens the distribution); $\alpha\in[0,1]$ weights KD against CE ($\alpha=1$ pure distillation, $\alpha=0$ pure supervision); $\mathrm{KL}$ is computed per token and then masked-averaged by `response_mask` (default: the attention mask), distilling only over the answer region; $T^2$ cancels temperature's $1/T^2$ scaling of the gradient magnitude.
 
 **The flywheel's "objective" — a data-filtering operator.** The flywheel itself is not a differentiable loss but a keep operator. Given a question $x$, a reference answer $r$, and a judge $V$ ($V(y,r)\in\{0,1\}$ pass or not), sample $N$ answers from the solver $\pi$; the kept set is
 
@@ -105,8 +105,8 @@ which then enter the SFT/KD objective. The per-question pass rate $\hat p_x = \t
 $$
 d \leftarrow
 \begin{cases}
-\min(1,\; d + \text{step}), & \bar p > \text{target\_high} \\
-\max(0,\; d - \text{step}), & \bar p < \text{target\_low} \\
+\min(1,\; d + \text{step}), & \bar p \gt  \text{target\_high} \\
+\max(0,\; d - \text{step}), & \bar p \lt  \text{target\_low} \\
 d, & \text{otherwise}
 \end{cases}
 \qquad \bar p = \frac{\sum_{\text{round}} \mathbf{1}[\text{pass}]}{\#\text{candidates}}.

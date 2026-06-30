@@ -80,7 +80,7 @@ $$\mathcal{L}_{\text{RM}}(\phi) = -\mathbb{E}_{(x, y_c, y_r)}\Big[\log \sigma\bi
 - $r_\phi(x, y)$：奖励模型对回答 $y$ 给出的标量分数（取最后一个非 pad token 隐状态过标量头）。
 - $\sigma$：sigmoid。$\sigma(r_c - r_r)$ 即 chosen 胜出的概率。
 - 损失只依赖**分差**，所以 $r_\phi$ 的绝对零点是任意的（无标度）。
-- 监控指标：pairwise accuracy $= \mathbb{E}[\mathbb{1}(r_c > r_r)]$，以及 reward margin $\mathbb{E}[r_c - r_r]$。
+- 监控指标：pairwise accuracy $= \mathbb{E}[\mathbb{1}(r_c \gt  r_r)]$，以及 reward margin $\mathbb{E}[r_c - r_r]$。
 
 **第三阶段 · PPO 裁剪代理目标**。记 response token 上的重要性比值 $\rho_t = \dfrac{\pi_\theta(a_t\mid s_t)}{\pi_{\theta_{\text{old}}}(a_t\mid s_t)} = \exp(\log p_\theta - \log p_{\text{old}})$，优势 $A_t$ 由 GAE 给出，则
 

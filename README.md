@@ -195,7 +195,7 @@ Each section below is a self-contained summary: the **idea**, the **architecture
 
 **Objective.** Next-token negative log-likelihood:
 
-$$\mathcal{L}_\text{PT} = -\sum_t \log P_\theta\big(x_t \mid x_{<t}\big)$$
+$$\mathcal{L}_\text{PT} = -\sum_t \log P_\theta\big(x_t \mid x_{\lt t}\big)$$
 
 ```python
 obj = trainall.build("pretrain")     # alias: "clm"
@@ -214,7 +214,7 @@ obj = trainall.build("pretrain")     # alias: "clm"
 
 **Architecture.** Same next-token objective as pre-training, but `ContinuedPretrainObjective` adds a **replay / domain-reweighting** knob so you can mix in general data and weight samples per domain — the standard guard against catastrophic forgetting.
 
-$$\mathcal{L}_\text{CPT} = -\sum_i w_i \sum_t \log P_\theta\big(x^{(i)}_t \mid x^{(i)}_{<t}\big)$$
+$$\mathcal{L}_\text{CPT} = -\sum_i w_i \sum_t \log P_\theta\big(x^{(i)}_t \mid x^{(i)}_{\lt t}\big)$$
 
 ```python
 obj = trainall.build("cpt", replay_weight=0.1)   # alias: "dapt"
@@ -232,7 +232,7 @@ obj = trainall.build("cpt", replay_weight=0.1)   # alias: "dapt"
 
 **Architecture.** Cross-entropy on the **response tokens only** — the prompt is masked to `-100` so the model is graded purely on what it should generate. `SFTObjective` supports label smoothing and optional prompt training.
 
-$$\mathcal{L}_\text{SFT} = -\sum_{t \in \text{response}} \log P_\theta\big(y_t \mid x, y_{<t}\big)$$
+$$\mathcal{L}_\text{SFT} = -\sum_{t \in \text{response}} \log P_\theta\big(y_t \mid x, y_{\lt t}\big)$$
 
 ```mermaid
 flowchart LR

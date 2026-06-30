@@ -37,21 +37,21 @@ This also explains a repeatedly validated empirical law: **for SFT, data quality
 Let the concatenated token sequence of one example be $x = (x_1, \dots, x_T)$, where the index set of the response segment is $\mathcal{R}$ (the prompt segment is masked and not in $\mathcal{R}$). The model $p_\theta$ is autoregressive, and the logits at token $t$ predict token $t{+}1$. The SFT loss is the average negative log-likelihood over the response tokens:
 
 $$
-\mathcal{L}_{\text{SFT}}(\theta) = -\frac{1}{|\mathcal{R}|} \sum_{t \in \mathcal{R}} \log p_\theta\!\left(x_t \mid x_{<t}\right)
+\mathcal{L}_{\text{SFT}}(\theta) = -\frac{1}{|\mathcal{R}|} \sum_{t \in \mathcal{R}} \log p_\theta\!\left(x_t \mid x_{\lt t}\right)
 $$
 
 - $x_t$: the $t$-th gold token (the supervision target).
-- $x_{<t}$: all tokens before it (including the prompt), used as conditioning.
+- $x_{\lt t}$: all tokens before it (including the prompt), used as conditioning.
 - $\mathcal{R}$: the index set of response tokens; $|\mathcal{R}|$ is its size, used to normalize by the number of effective tokens.
-- $p_\theta(x_t \mid x_{<t})$: the model's predicted probability for the gold token at position $t$, obtained by gathering after `log_softmax(logits)`.
+- $p_\theta(x_t \mid x_{\lt t})$: the model's predicted probability for the gold token at position $t$, obtained by gathering after `log_softmax(logits)`.
 
 Adding **label smoothing** (coefficient $\varepsilon$, Szegedy et al. 2016), the loss for each token becomes:
 
 $$
-\ell_t = (1-\varepsilon)\,\big(\!-\log p_\theta(x_t \mid x_{<t})\big) \;+\; \varepsilon \cdot \Big(\!-\tfrac{1}{V}\textstyle\sum_{v=1}^{V} \log p_\theta(v \mid x_{<t})\Big)
+\ell_t = (1-\varepsilon)\,\big(\!-\log p_\theta(x_t \mid x_{\lt t})\big) \;+\; \varepsilon \cdot \Big(\!-\tfrac{1}{V}\textstyle\sum_{v=1}^{V} \log p_\theta(v \mid x_{\lt t})\Big)
 $$
 
-where $V$ is the vocabulary size. $\varepsilon=0$ reduces to pure NLL. The smoothing term hands a little probability mass to all tokens, mitigating over-confidence and improving generalization and calibration. The `ppl` reported in `trainall` is always based on the unsmoothed NLL: $\text{ppl} = \exp\big(\tfrac{1}{|\mathcal{R}|}\sum_{t\in\mathcal{R}} -\log p_\theta(x_t\mid x_{<t})\big)$.
+where $V$ is the vocabulary size. $\varepsilon=0$ reduces to pure NLL. The smoothing term hands a little probability mass to all tokens, mitigating over-confidence and improving generalization and calibration. The `ppl` reported in `trainall` is always based on the unsmoothed NLL: $\text{ppl} = \exp\big(\tfrac{1}{|\mathcal{R}|}\sum_{t\in\mathcal{R}} -\log p_\theta(x_t\mid x_{\lt t})\big)$.
 
 ## Data format
 

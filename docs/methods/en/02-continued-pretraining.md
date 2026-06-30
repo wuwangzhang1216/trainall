@@ -41,15 +41,15 @@ Note that `replay_weight=0.0` (the default) also follows the fast path — it me
 The basis is the causal-LM negative log-likelihood. For a sequence $x = (x_1, \dots, x_T)$ of length $T$:
 
 $$
-\mathcal{L}_{\text{CLM}}(x) = -\frac{1}{|\mathcal{M}|}\sum_{t \in \mathcal{M}} \log P_\theta\!\left(x_{t} \mid x_{<t}\right)
+\mathcal{L}_{\text{CLM}}(x) = -\frac{1}{|\mathcal{M}|}\sum_{t \in \mathcal{M}} \log P_\theta\!\left(x_{t} \mid x_{\lt t}\right)
 $$
 
-where $\theta$ are the model parameters, $P_\theta(x_t \mid x_{<t})$ is the model's predicted probability for the true token at position $t$, $\mathcal{M}$ is the set of positions that contribute to the loss (positions labeled `-100` are ignored; CPT usually has **all tokens contribute to the loss**), and $|\mathcal{M}|$ is the number of valid tokens. This is exactly the loss of [pre-training](01-pretraining.md).
+where $\theta$ are the model parameters, $P_\theta(x_t \mid x_{\lt t})$ is the model's predicted probability for the true token at position $t$, $\mathcal{M}$ is the set of positions that contribute to the loss (positions labeled `-100` are ignored; CPT usually has **all tokens contribute to the loss**), and $|\mathcal{M}|$ is the number of valid tokens. This is exactly the loss of [pre-training](01-pretraining.md).
 
 When within-batch weighting is enabled, trainall first computes the **per-token average NLL** for each sample, then takes a weighted average over the sample weights. Suppose a batch has $B$ samples, where the $i$-th sample has per-token average NLL $\ell_i$ and weight $w_i$:
 
 $$
-\ell_i = -\frac{1}{n_i}\sum_{t \in \mathcal{M}_i} \log P_\theta\!\left(x^{(i)}_{t} \mid x^{(i)}_{<t}\right), \qquad
+\ell_i = -\frac{1}{n_i}\sum_{t \in \mathcal{M}_i} \log P_\theta\!\left(x^{(i)}_{t} \mid x^{(i)}_{\lt t}\right), \qquad
 \mathcal{L}_{\text{CPT}} = \frac{\sum_{i=1}^{B} w_i\, \ell_i}{\sum_{i=1}^{B} w_i}
 $$
 

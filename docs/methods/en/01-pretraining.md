@@ -34,9 +34,9 @@ The model is a **decoder-only Transformer**, modeling sequence probability **aut
 
 Viewing a span of text as a token sequence $x = (x_1, x_2, \dots, x_T)$, the joint probability of the whole sequence is decomposed by the chain rule into
 
-$$ p_\theta(x) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{<t}) $$
+$$ p_\theta(x) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{\lt t}) $$
 
-Each conditional probability $p_\theta(x_t \mid x_{<t})$ depends only on the context to the **left**. In the implementation, this is guaranteed by the **causal attention mask**: the attention at position $t$ is forbidden from seeing any token after $t$. This is the key engineering trick — the mask lets the model **compute predictions for all $T$ positions in parallel within a single forward pass** (training is efficient), while each position still "cannot see the future" (no cheating, no information leakage). This is also why training can use teacher forcing (feeding in the true prefix), while inference can only generate one token at a time.
+Each conditional probability $p_\theta(x_t \mid x_{\lt t})$ depends only on the context to the **left**. In the implementation, this is guaranteed by the **causal attention mask**: the attention at position $t$ is forbidden from seeing any token after $t$. This is the key engineering trick — the mask lets the model **compute predictions for all $T$ positions in parallel within a single forward pass** (training is efficient), while each position still "cannot see the future" (no cheating, no information leakage). This is also why training can use teacher forcing (feeding in the true prefix), while inference can only generate one token at a time.
 
 For the implementation details of attention itself (multi-head, GQA, RoPE, MoE, etc.), see the architecture doc [11-architectures.md](11-architectures.md).
 
@@ -56,13 +56,13 @@ The theoretical roots trace back to the neural language model of Bengio et al. (
 
 Pre-training minimizes the average negative log-likelihood (NLL) over all tokens, i.e., the cross-entropy of the next token:
 
-$$ \mathcal{L}(\theta) = -\frac{1}{N} \sum_{t} \mathbb{1}[y_t \neq -100] \cdot \log p_\theta(y_t \mid x_{<t}) $$
+$$ \mathcal{L}(\theta) = -\frac{1}{N} \sum_{t} \mathbb{1}[y_t \neq -100] \cdot \log p_\theta(y_t \mid x_{\lt t}) $$
 
 where:
 
-- $x_{<t}$ — all tokens before position $t$ (the left context / prefix).
+- $x_{\lt t}$ — all tokens before position $t$ (the left context / prefix).
 - $y_t$ — the supervised target at position $t$, i.e., the "next token." In pure pre-training $y_t = x_{t+1}$, so in the code `labels` equals `input_ids` (a **causal shift** is performed internally to align the logits with the next position).
-- $p_\theta(y_t \mid x_{<t})$ — the probability the model assigns to the correct token $y_t$ after applying softmax over the vocabulary at that position.
+- $p_\theta(y_t \mid x_{\lt t})$ — the probability the model assigns to the correct token $y_t$ after applying softmax over the vocabulary at that position.
 - $\mathbb{1}[y_t \neq -100]$ — the masking indicator function: positions labeled `-100` (such as padding) do not count toward the loss.
 - $N = \sum_t \mathbb{1}[y_t \neq -100]$ — the total number of tokens actually participating in the computation, used as the normalization denominator.
 

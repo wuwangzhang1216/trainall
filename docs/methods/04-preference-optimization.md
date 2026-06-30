@@ -65,7 +65,7 @@ $$\nabla_\theta\mathcal{L}_{\text{DPO}}\ \propto\ -\,\underbrace{\sigma\!\big(\h
 
 ## 目标函数（数学）
 
-记 $\log\pi(y)=\sum_t\log\pi(y_t\mid y_{<t},x)$ 为序列对数概率（trainall 中由 `sequence_logps(..., average=False)` 计算）；$\overline{\log\pi}(y)$ 为其**长度归一化**版本（`average=True`，即除以 token 数）。$y_c,y_r$ 分别是 chosen / rejected。
+记 $\log\pi(y)=\sum_t\log\pi(y_t\mid y_{\lt t},x)$ 为序列对数概率（trainall 中由 `sequence_logps(..., average=False)` 计算）；$\overline{\log\pi}(y)$ 为其**长度归一化**版本（`average=True`，即除以 token 数）。$y_c,y_r$ 分别是 chosen / rejected。
 
 ### 比较表
 
@@ -133,7 +133,7 @@ SFT 项让模型学会 chosen 的内容，几率比项把 rejected 推开；$\lo
 
 $$\mathcal{L}_{\text{SimPO}}=-\log\sigma\big(\beta\,\overline{\log\pi_\theta}(y_c)-\beta\,\overline{\log\pi_\theta}(y_r)-\gamma\big)$$
 
-长度归一化天然消除 DPO 偏爱长回答的 length bias；$\gamma>0$ 要求 chosen 至少领先一个安全边际 (Meng et al. 2024)。注意此处默认 $\beta=2.0,\ \gamma=0.5$。
+长度归一化天然消除 DPO 偏爱长回答的 length bias；$\gamma\gt 0$ 要求 chosen 至少领先一个安全边际 (Meng et al. 2024)。注意此处默认 $\beta=2.0,\ \gamma=0.5$。
 
 ### CPO (Contrastive Preference Optimization)
 

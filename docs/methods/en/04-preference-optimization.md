@@ -65,7 +65,7 @@ The math for each follows below.
 
 ## Objective (the math)
 
-Write $\log\pi(y)=\sum_t\log\pi(y_t\mid y_{<t},x)$ for the sequence log-probability (computed in trainall by `sequence_logps(..., average=False)`); let $\overline{\log\pi}(y)$ be its **length-normalized** version (`average=True`, i.e. divided by the token count). $y_c,y_r$ are chosen / rejected respectively.
+Write $\log\pi(y)=\sum_t\log\pi(y_t\mid y_{\lt t},x)$ for the sequence log-probability (computed in trainall by `sequence_logps(..., average=False)`); let $\overline{\log\pi}(y)$ be its **length-normalized** version (`average=True`, i.e. divided by the token count). $y_c,y_r$ are chosen / rejected respectively.
 
 ### Comparison table
 
@@ -133,7 +133,7 @@ The SFT term makes the model learn the content of chosen, the odds-ratio term pu
 
 $$\mathcal{L}_{\text{SimPO}}=-\log\sigma\big(\beta\,\overline{\log\pi_\theta}(y_c)-\beta\,\overline{\log\pi_\theta}(y_r)-\gamma\big)$$
 
-Length normalization naturally removes DPO's length bias of favoring longer responses; $\gamma>0$ requires chosen to lead by at least a safety margin (Meng et al. 2024). Note that the defaults here are $\beta=2.0,\ \gamma=0.5$.
+Length normalization naturally removes DPO's length bias of favoring longer responses; $\gamma\gt 0$ requires chosen to lead by at least a safety margin (Meng et al. 2024). Note that the defaults here are $\beta=2.0,\ \gamma=0.5$.
 
 ### CPO (Contrastive Preference Optimization)
 

@@ -80,7 +80,7 @@ $$\mathcal{L}_{\text{RM}}(\phi) = -\mathbb{E}_{(x, y_c, y_r)}\Big[\log \sigma\bi
 - $r_\phi(x, y)$: the scalar score the reward model gives response $y$ (take the last non-pad token's hidden state through the scalar head).
 - $\sigma$: sigmoid. $\sigma(r_c - r_r)$ is the probability that chosen wins.
 - The loss depends only on the **score difference**, so $r_\phi$'s absolute zero is arbitrary (scale-free).
-- Monitoring metrics: pairwise accuracy $= \mathbb{E}[\mathbb{1}(r_c > r_r)]$, and reward margin $\mathbb{E}[r_c - r_r]$.
+- Monitoring metrics: pairwise accuracy $= \mathbb{E}[\mathbb{1}(r_c \gt  r_r)]$, and reward margin $\mathbb{E}[r_c - r_r]$.
 
 **Stage three · PPO clipped surrogate objective**. Write the importance ratio on response tokens as $\rho_t = \dfrac{\pi_\theta(a_t\mid s_t)}{\pi_{\theta_{\text{old}}}(a_t\mid s_t)} = \exp(\log p_\theta - \log p_{\text{old}})$, with advantage $A_t$ given by GAE, then
 
