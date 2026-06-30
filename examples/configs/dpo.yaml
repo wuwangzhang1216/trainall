@@ -1,0 +1,46 @@
+# DPO run config — load with trainall.load_config("examples/configs/dpo.yaml").
+# DPO needs preference data (prompt/chosen/rejected) and a reference model; see
+# examples/02_dpo.py for the custom collate that supplies both. This file shows
+# the declarative knobs (beta, loss_type) and the LoRA adapter option.
+name: dpo-demo
+
+model:
+  arch: decoder_lm
+  options:
+    vocab_size: 256
+    dim: 32
+    n_layers: 2
+    n_heads: 4
+    n_kv_heads: 2
+    max_seq_len: 64
+
+data:
+  source: jsonl
+  path: data/preferences.jsonl   # {"prompt":..., "chosen":..., "rejected":...}
+  max_seq_len: 64
+
+objective:
+  name: dpo
+  options:
+    beta: 0.1
+    loss_type: sigmoid
+    label_smoothing: 0.0
+
+algorithm:
+  name: lora
+  options:
+    config:
+      r: 8
+      alpha: 16
+      target_modules: [q_proj, k_proj, v_proj, o_proj]
+
+optim:
+  lr: 0.00005
+  grad_clip: 1.0
+
+train:
+  batch_size: 2
+  max_steps: 100
+  bf16: false
+  device: cpu
+  log_every: 10

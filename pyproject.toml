@@ -1,0 +1,72 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "trainall"
+version = "0.1.0"
+description = "One library for the frontier LLM training stack: CPT, SFT, DPO/KTO/ORPO, RLHF, RLVR+GRPO, agentic RL, distillation, self-play — behind a single config-driven API."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "wuwangzhang1216", email = "wangzhangwu1216@gmail.com" }]
+keywords = [
+    "llm", "fine-tuning", "rlhf", "dpo", "grpo", "rlvr", "lora", "qlora",
+    "sft", "preference-optimization", "agentic-rl", "distillation", "self-play",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Core deps are intentionally tiny so `import trainall` always works.
+# Everything heavy (torch/trl/...) is lazy-imported and lives in extras.
+dependencies = [
+    "pyyaml>=5.4",
+]
+
+[project.optional-dependencies]
+# Pure-python verification helpers (math/json). Code & regex verifiers need nothing extra.
+verify = ["sympy>=1.11", "jsonschema>=4.0"]
+# Everything needed to actually run a training job.
+train = [
+    "torch>=2.1",
+    "transformers>=4.45",
+    "trl>=0.12",
+    "peft>=0.11",
+    "datasets>=2.18",
+    "accelerate>=0.30",
+]
+# 4-bit / 8-bit (QLoRA).
+quant = ["bitsandbytes>=0.43; platform_system == 'Linux'"]
+all = [
+    "trainall[verify,train,quant]",
+]
+dev = [
+    "trainall[verify]",
+    "pytest>=7.0",
+]
+
+[project.scripts]
+trainall = "trainall.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/wuwangzhang1216/LLM-Train-All"
+Repository = "https://github.com/wuwangzhang1216/LLM-Train-All"
+Documentation = "https://github.com/wuwangzhang1216/LLM-Train-All/tree/main/docs/methods"
+Issues = "https://github.com/wuwangzhang1216/LLM-Train-All/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/trainall"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

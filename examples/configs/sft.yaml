@@ -1,0 +1,43 @@
+# SFT run config — load with trainall.load_config("examples/configs/sft.yaml")
+# then Trainer.from_config(cfg).train().
+# The tiny `model.options` are ArchConfig fields, so this builds a from-scratch
+# DecoderLM with no download. Point `data.path` at your own JSONL of
+# {"prompt": ..., "response": ...} records for a real run.
+name: sft-demo
+
+model:
+  arch: decoder_lm
+  # ArchConfig kwargs — a tiny CPU-friendly model.
+  options:
+    vocab_size: 256
+    dim: 32
+    n_layers: 2
+    n_heads: 4
+    n_kv_heads: 2
+    ffn_dim: 64
+    max_seq_len: 64
+
+data:
+  source: jsonl
+  path: data/sft.jsonl
+  template: chatml
+  max_seq_len: 64
+
+objective:
+  name: sft
+  options:
+    label_smoothing: 0.0
+
+algorithm:
+  name: full
+
+optim:
+  lr: 0.0002
+  grad_clip: 1.0
+
+train:
+  batch_size: 4
+  max_steps: 50
+  bf16: false
+  device: cpu
+  log_every: 10

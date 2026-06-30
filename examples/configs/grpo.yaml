@@ -1,0 +1,48 @@
+# GRPO / RLVR run config — load with trainall.load_config("examples/configs/grpo.yaml").
+# The `rl` block holds rollout + verification knobs (group_size, temperature,
+# the reward/verifier registry keys). See examples/03_rlvr_grpo.py for the
+# rollout -> verify -> group-advantage -> GRPO step loop this config describes.
+name: grpo-demo
+
+model:
+  arch: decoder_lm
+  options:
+    vocab_size: 256
+    dim: 32
+    n_layers: 2
+    n_heads: 4
+    n_kv_heads: 2
+    max_seq_len: 64
+
+data:
+  source: jsonl
+  path: data/prompts.jsonl   # {"prompt":..., "reference":...} verifiable tasks
+  max_seq_len: 64
+
+objective:
+  name: grpo
+  options:
+    clip_range: 0.2
+
+algorithm:
+  name: full
+
+optim:
+  lr: 0.000001
+  grad_clip: 1.0
+
+rl:
+  group_size: 8
+  temperature: 1.0
+  top_p: 1.0
+  max_new_tokens: 256
+  kl_coef: 0.0
+  reward: verifier
+  verifier: math
+
+train:
+  batch_size: 8
+  max_steps: 100
+  bf16: false
+  device: cpu
+  log_every: 10

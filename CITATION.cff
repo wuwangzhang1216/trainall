@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use trainall in your research or product, please cite it."
+title: "trainall: one library for the frontier LLM training stack"
+abstract: >-
+  trainall packages the modern LLM training stack — pre-training, CPT/DAPT, SFT,
+  preference optimization (DPO/IPO/KTO/ORPO/SimPO/CPO), RLHF, RLVR+GRPO, agentic
+  RL, distillation, self-play and LoRA/QLoRA — behind one config-driven,
+  registry-based API.
+type: software
+authors:
+  - name: "wuwangzhang1216"
+repository-code: "https://github.com/wuwangzhang1216/LLM-Train-All"
+url: "https://github.com/wuwangzhang1216/LLM-Train-All"
+license: MIT
+version: "0.1.0"
+date-released: "2026-06-29"
+keywords:
+  - llm
+  - fine-tuning
+  - rlhf
+  - dpo
+  - grpo
+  - rlvr
+  - lora
+  - qlora
+  - preference-optimization
+  - agentic-rl
+  - knowledge-distillation
